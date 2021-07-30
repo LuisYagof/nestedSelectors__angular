@@ -1,0 +1,37 @@
+<h1 class="mt-5">Nested Selectors</h1>
+<hr>
+
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+  <div class="row mb-3">
+    <div class="col">
+
+      <label class="form-label">Continent</label>
+      <select class="form-control"
+        formControlName="region">
+        <option value="">
+          -- Choose continent --
+        </option>
+        <option value="1">
+          Europe
+        </option>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <button type="submit" class="btn btn-primary float-end">
+        Sumbit
+      </button>
+
+    </div>
+  </div>
+
+</form>
+
+<h3>FROM</h3>
+<pre>VALID: {{myForm.valid}}</pre>
+<pre>VALUE: {{myForm.value | json}}</pre>
