@@ -1,32 +1,79 @@
 <h1 class="mt-5">Nested Selectors</h1>
 <hr>
 
-<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+<form [formGroup]="myForm"
+  (ngSubmit)="submitForm()">
 
+  <!-- REGION -->
   <div class="row mb-3">
     <div class="col">
-
       <label class="form-label">Continent</label>
       <select class="form-control"
         formControlName="region">
         <option value="">
           -- Choose continent --
         </option>
-        <option value="1">
-          Europe
+        <option *ngFor="let region of regions"
+          [value]="region | lowercase">
+          {{region}}
         </option>
       </select>
-
     </div>
   </div>
 
+  <!-- COUNTRY -->
+  <div class="row mb-3"
+    *ngIf="countries.length > 0">
+    <div class="col">
+      <label class="form-label">Country</label>
+      <select class="form-control"
+        formControlName="country">
+        <option value="">
+          -- Choose country --
+        </option>
+        <option *ngFor="let country of countries"
+          [value]="country.alpha3Code">
+          {{country.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- BORDERS -->
+  <div class="row mb-3"
+    *ngIf="borders.length !== 0">
+    <div class="col">
+      <label class="form-label">Border</label>
+      <select class="form-control"
+        formControlName="border">
+        <option value="">
+          -- Choose border --
+        </option>
+        <option *ngFor="let border of borders"
+          [value]="border.alpha3Code">
+          {{border.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SPINNER -->
+  <div class="row"
+    *ngIf="loading">
+    <div class="col">
+      <div class="alert alert-primary">
+        Loading...
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTON -->
   <div class="row">
     <div class="col">
-
-      <button type="submit" class="btn btn-primary float-end">
+      <button type="submit"
+        class="btn btn-primary float-end">
         Sumbit
       </button>
-
     </div>
   </div>
 
